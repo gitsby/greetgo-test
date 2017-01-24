@@ -2,6 +2,7 @@ package com.github.greetgo.test.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,10 +18,10 @@ import javax.sql.DataSource;
  */
 @Configuration
 @PropertySource(name = "localProp", value = {"classpath:application.properties"})
-@MapperScan("com.github.gitsby.greetgo-test")
+@MapperScan("com.github.greetgo.test.service.persistence")
 public class DataConfig {
 
-    public static final String PACKAGE_MAPPER_SCAN = "com.github.gitsby.greetgo-test.model";
+    private static final String PACKAGE_MAPPER_SCAN = "com.github.gitsby.greetgo-test.model";
     private final Environment environment;
 
     @Autowired
@@ -51,4 +52,11 @@ public class DataConfig {
         sessionFactory.setTypeAliasesPackage(PACKAGE_MAPPER_SCAN);
         return sessionFactory;
     }
+
+    @Bean
+    public SqlSessionTemplate sqlSession() throws Exception {
+        return new SqlSessionTemplate(sqlSessionFactory().getObject());
+    }
+
 }
+

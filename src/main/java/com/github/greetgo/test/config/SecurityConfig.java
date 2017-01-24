@@ -1,9 +1,5 @@
 package com.github.greetgo.test.config;
 
-/**
- * Created by Kasyanov Maxim on 1/19/2017.
- */
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,14 +21,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").anonymous()
-                .anyRequest().authenticated()
+                    .antMatchers("/").access("hasAnyRole('USER')")
                 .and()
                 .formLogin()
-                .loginPage("/")
-                .defaultSuccessUrl("/profile")
-                .failureUrl("/?error=true")
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .failureUrl("/login?error=true")
                 .and()
-                .logout().logoutSuccessUrl("/");
+                .logout().logoutSuccessUrl("/login.html");
     }
 }

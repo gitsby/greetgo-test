@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -19,9 +20,9 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = "com.github.greetgo.test.*")
 public class WebConfig  extends WebMvcConfigurerAdapter {
 
-    public static final String PREFIX = "/WEB-INF/view/";
-    public static final String SUFFIX = ".jsp";
-    public static final String APPLICATION_PROPERTIES = "application.properties";
+    private static final String PREFIX = "/WEB-INF/view/";
+    private static final String SUFFIX = ".jsp";
+    private static final String APPLICATION_PROPERTIES = "application.properties";
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -42,5 +43,13 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
         PropertiesFactoryBean bean = new PropertiesFactoryBean();
         bean.setLocation(new ClassPathResource(APPLICATION_PROPERTIES));
         return bean;
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+//        registry.addViewController("/home").setViewName("home");
+//        registry.addViewController("/").setViewName("home");
+        registry.addViewController("/").setViewName("profile");
+        registry.addViewController("/login").setViewName("login");
     }
 }

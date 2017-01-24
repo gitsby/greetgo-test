@@ -10,10 +10,6 @@ import javax.servlet.Filter;
  * Created by Kasyanov Maxim on 1/19/2017.
  */
 public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
-    public static final String UTF_8 = "UTF-8";
-    public static final String PATH = "/";
-
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[]{WebConfig.class};
@@ -23,15 +19,16 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
     protected Class<?>[] getServletConfigClasses() {
         return null;
     }
+
     @Override
     protected String[] getServletMappings() {
-        return new String[]{PATH};
+        return new String[]{"/"};
     }
 
     @Override
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding(UTF_8);
-        return new Filter[] { characterEncodingFilter};
+        characterEncodingFilter.setEncoding("UTF-8");
+        return new Filter[]{characterEncodingFilter};
     }
 }
