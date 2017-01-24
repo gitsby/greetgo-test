@@ -1,4 +1,4 @@
-package com.github.greetgo.test.service.persistence;
+package com.github.greetgo.test.persistence;
 
 import com.github.greetgo.test.model.Student;
 import com.github.greetgo.test.model.StudyMode;
@@ -22,7 +22,7 @@ public interface StudentMapper {
             @Result(property = "name", column = "column"),
             @Result(property = "surname", column = "surname"),
             @Result(property = "group", column = "group_"),
-            @Result(property = "studyMode", column = "study_mode_id", one = @One(select ="com.github.greetgo.test.service.persistence.StudentMapper.getStudyModeById"))
+            @Result(property = "studyMode", column = "study_mode_id", one = @One(select ="com.github.greetgo.test.persistence.StudentMapper.getStudyModeById"))
     })
     @Select("SELECT id, name, surname, group_, study_mode_id from student where is_del != true")
     List<Student> studentList();

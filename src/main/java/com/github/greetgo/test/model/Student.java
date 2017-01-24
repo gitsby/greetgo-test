@@ -19,6 +19,13 @@ public class Student implements GenericModel {
     public Student() {
     }
 
+    public Student(String name, String surname, String group, StudyMode studyMode) {
+        this.name = name;
+        this.surname = surname;
+        this.group = group;
+        this.studyMode = studyMode;
+    }
+
     public Student(Long id, String name, String surname, String group, StudyMode studyMode) {
         this.id = id;
         this.name = name;

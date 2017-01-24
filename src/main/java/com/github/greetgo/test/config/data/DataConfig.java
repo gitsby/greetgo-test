@@ -1,4 +1,4 @@
-package com.github.greetgo.test.config;
+package com.github.greetgo.test.config.data;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -18,7 +18,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @PropertySource(name = "localProp", value = {"classpath:application.properties"})
-@MapperScan("com.github.greetgo.test.service.persistence")
+@MapperScan("com.github.greetgo.test.persistence")
 public class DataConfig {
 
     private static final String PACKAGE_MAPPER_SCAN = "com.github.gitsby.greetgo-test.model";

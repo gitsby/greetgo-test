@@ -3,7 +3,7 @@ package com.github.greetgo.test.service.impl;
 import com.github.greetgo.test.model.Student;
 import com.github.greetgo.test.model.StudyMode;
 import com.github.greetgo.test.service.StudentService;
-import com.github.greetgo.test.service.persistence.StudentMapper;
+import com.github.greetgo.test.persistence.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
